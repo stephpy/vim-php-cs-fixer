@@ -8,12 +8,12 @@ This plugin will execute the `php-cs-fixer` command on the directory where you l
 **Options available**:
 
 ```viml
-let g:php_cs_fixer_path = ~/php-cs-fixer.phar "define the path to the php-cs-fixer.phar
-let g:php_cs_fixer_level = "all"              " which level ?
-let g:php_cs_fixer_finder = "SymfonyFinder"   " Which finder ?
-let g:php_cs_fixer_php_path = "php"           " Path to PHP
-let g:php_cs_fixer_default_mapping = 1        " Enable the mapping by default (<leader>pcd)
-let g:php_cs_fixer_dry_run = 0                " Call command with dry-run option
+let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+let g:php_cs_fixer_level = "all"                " which level ?
+let g:php_cs_fixer_finder = "SymfonyFinder"     " Which finder ?
+let g:php_cs_fixer_php_path = "php"             " Path to PHP
+let g:php_cs_fixer_default_mapping = 1          " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                  " Call command with dry-run option
 ```
 
 Default mapping is `<leader>pcd`
