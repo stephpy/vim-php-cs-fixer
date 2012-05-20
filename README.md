@@ -15,6 +15,8 @@ let g:php_cs_fixer_default_mapping = 1        " Enable the mapping by default
 
 Default mapping is `<leader>pcd`
 
+**You have to launch this command at the root of your project**
+
 If you want to change it:
 
 ```viml
