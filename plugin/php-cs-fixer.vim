@@ -24,10 +24,6 @@ fun! PhpCsFixerFix(path)
     exe ":! "g:php_cs_fixer_command" "a:path" "g:php_cs_fixer_finder
 endfun
 
-fun! PhpCsFixerFixDirectory()
-    call PhpCsFixerFix()
-endfun
-
 if(g:php_cs_fixer_default_mapping == 1)
     map <leader>pcd :call PhpCsFixerFix(expand('%:p:h'))<CR>
 endif
