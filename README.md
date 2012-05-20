@@ -13,6 +13,7 @@ let g:php_cs_fixer_level = "all"              " which level ?
 let g:php_cs_fixer_finder = "Symfony21Finder" " Which finder ?
 let g:php_cs_fixer_php_path = "php"           " Which php to use
 let g:php_cs_fixer_default_mapping = 1        " Enable the mapping by default
+let g:php_cs_fixer_dry_run = 0                " Call command with dry-run option
 ```
 
 Default mapping is `<leader>pcd`

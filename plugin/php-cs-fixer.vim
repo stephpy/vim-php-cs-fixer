@@ -1,27 +1,27 @@
-if (!exists("g:php_cs_fixer_path"))
-    let g:php_cs_fixer_path = "~/php-cs-fixer.phar"
-endif
+" Taken from NerdTree
+function! s:initVariable(var, value)
+    if !exists(a:var)
+        exec 'let ' . a:var . ' = ' . "'" . substitute(a:value, "'", "''", "g") . "'"
+        return 1
+    endif
+    return 0
+endfunction
 
-if (!exists("g:php_cs_fixer_level"))
-    let g:php_cs_fixer_level = "all"
-endif
+call s:initVariable("g:php_cs_fixer_default_mapping", 1)
+call s:initVariable("g:php_cs_fixer_php_path", "php")
+call s:initVariable("g:php_cs_fixer_finder", "SymfonyFinder")
+call s:initVariable("g:php_cs_fixer_level", "all")
+call s:initVariable("g:php_cs_fixer_path", "~/php-cs-fixer.phar")
+call s:initVariable("g:php_cs_fixer_dry_run", 1)
 
-if (!exists("g:php_cs_fixer_finder"))
-    let g:php_cs_fixer_finder = "SymfonyFinder"
-endif
-
-if (!exists("g:php_cs_fixer_php_path"))
-    let g:php_cs_fixer_php_path = "php"
-endif
-
-if !exists("g:php_cs_fixer_default_mapping")
-    let g:php_cs_fixer_default_mapping = 1
-endif
-
-let g:php_cs_fixer_command = g:php_cs_fixer_php_path." ".g:php_cs_fixer_path." fix --level=".g:php_cs_fixer_level
+let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix --level='.g:php_cs_fixer_level
 
 fun! PhpCsFixerFix(path)
-    exe ":! "g:php_cs_fixer_command" "a:path" "g:php_cs_fixer_finder
+    let command = g:php_cs_fixer_command.' '.a:path.' '.g:php_cs_fixer_finder
+    if(g:php_cs_fixer_dry_run == 1)
+        let command = command.' --dry-run'
+    endif
+    exe ':! echo '.command.' && '.command
 endfun
 
 if(g:php_cs_fixer_default_mapping == 1)
