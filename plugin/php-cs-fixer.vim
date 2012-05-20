@@ -7,7 +7,7 @@ if (!exists("g:php_cs_fixer_level"))
 endif
 
 if (!exists("g:php_cs_fixer_finder"))
-    let g:php_cs_fixer_finder = "Symfony21Finder"
+    let g:php_cs_fixer_finder = "SymfonyFinder"
 endif
 
 if (!exists("g:php_cs_fixer_php_path"))

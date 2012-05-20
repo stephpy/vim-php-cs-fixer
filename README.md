@@ -3,6 +3,8 @@ Vim-php-cs-fixer by steph_py
 
 Integrate [php-cs-fixer](https://github.com/fabpot/PHP-CS-Fixer) created by fabpot.
 
+This plugin will execute the php-cs-fixer fix command on the directory where you launch the command.
+
 Options available:
 
 ```viml
@@ -14,8 +16,6 @@ let g:php_cs_fixer_default_mapping = 1        " Enable the mapping by default
 ```
 
 Default mapping is `<leader>pcd`
-
-**You have to launch this command at the root of your project**
 
 If you want to change it:
 
