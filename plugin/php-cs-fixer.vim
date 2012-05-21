@@ -31,6 +31,15 @@ fun! PhpCsFixerFix(path)
     exe ':! echo '.command.' && '.command
 endfun
 
+fun! PhpCsFixerFixDirectory()
+    call PhpCsFixerFix(expand('%:p:h'))
+endfun
+
+fun! PhpCsFixerFixFile()
+    call PhpCsFixerFix(expand('%:p'))
+endfun
+
 if(g:php_cs_fixer_default_mapping == 1)
-    map <leader>pcd :call PhpCsFixerFix(expand('%:p:h'))<CR>
+    map <leader>pcd :call PhpCsFixerFixDirectory()<CR>
+    map <leader>pcf :call PhpCsFixerFixFile()<CR>
 endif

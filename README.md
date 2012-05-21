@@ -3,7 +3,7 @@ Vim-php-cs-fixer
 
 Integrate [php-cs-fixer](https://github.com/fabpot/PHP-CS-Fixer) created by fabpot.
 
-This plugin will execute the `php-cs-fixer` command on the directory where you launch the command. See options to know how to customize that.
+This plugin will execute the `php-cs-fixer` command on the directory or file (depends on which command you call). See options to know how to customize that.
 
 **Options available**:
 
@@ -22,7 +22,8 @@ Default mapping is `<leader>pcd`
 If you want to change it:
 
 ```viml
-map <leader>pcd :call PhpCsFixerFix(expand('%:p:h'))<CR>
+map <leader>pcd :call PhpCsFixerFixDirectory()<CR>
+map <leader>pcf :call PhpCsFixerFixFile()<CR>
 ```
 
 # Installation
@@ -36,9 +37,3 @@ Bundle 'stephpy/vim-php-cs-fixer'
 To see how to install `php-cs-fixer`, look at [php-cs-fixer](https://github.com/fabpot/PHP-CS-Fixer) repository.
 
 If you see any improvement or question, contribute or create an issue
-
-----------------------
-
-Todo
-
-- User can launch command for the actual file OR the actual dir.
