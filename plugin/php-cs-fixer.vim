@@ -28,7 +28,13 @@ fun! PhpCsFixerFix(path)
         let command = command.' --fixers='.g:php_cs_fixer_fixers_list
     endif
 
-    exe ':! echo '.command.' && '.command
+    let output = system(command)
+    if v:shell_error
+        echohl Error | echo output | echohl None
+    else
+        " todo, count how many files have been updated
+        echohl Title | echo output | echohl None
+    endif
 endfun
 
 fun! PhpCsFixerFixDirectory()
