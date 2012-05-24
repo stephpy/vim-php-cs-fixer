@@ -14,14 +14,17 @@ endfunction
 
 call s:initVariable("g:php_cs_fixer_path", "~/php-cs-fixer.phar")
 call s:initVariable("g:php_cs_fixer_level", "all")
-call s:initVariable("g:php_cs_fixer_config", "default")
 call s:initVariable("g:php_cs_fixer_php_path", "php")
-call s:initVariable("g:php_cs_fixer_fixers_list", "")
 call s:initVariable("g:php_cs_fixer_default_mapping", 1)
 call s:initVariable("g:php_cs_fixer_dry_run", 0)
 call s:initVariable("g:php_cs_fixer_verbose", 0)
 
-let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix --config='.g:php_cs_fixer_config
+let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix'
+
+if exists('g:php_cs_fixer_config')
+    let g:php_cs_fixer_command = g:php_cs_fixer_command.' --config='.g:php_cs_fixer_config
+endif
+
 
 fun! PhpCsFixerFix(path, dry_run)
     let command = g:php_cs_fixer_command.' '.a:path
@@ -31,7 +34,7 @@ fun! PhpCsFixerFix(path, dry_run)
         let command = command.' --dry-run'
     endif
 
-    if strlen(g:php_cs_fixer_fixers_list)
+    if exists('g:php_cs_fixer_fixers_list')
         let command = command.' --fixers='.g:php_cs_fixer_fixers_list
     endif
 
