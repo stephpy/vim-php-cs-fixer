@@ -39,6 +39,3 @@ To see how to install `php-cs-fixer`, look at [php-cs-fixer](https://github.com/
 
 If you see any improvement or question, contribute or create an issue
 
-# Todo
-
-- If `dry-run` option, ask to user if he wants to launch command without dry-run after he launchs command.

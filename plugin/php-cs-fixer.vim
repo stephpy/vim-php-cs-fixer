@@ -1,3 +1,8 @@
+if exists("g:vim_php_cs_fixer") || &cp
+    finish
+endif
+let g:vim_php_cs_fixer = 1
+
 " Taken from NerdTree
 function! s:initVariable(var, value)
     if !exists(a:var)
@@ -18,14 +23,15 @@ call s:initVariable("g:php_cs_fixer_verbose", 0)
 
 let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix --config='.g:php_cs_fixer_config
 
-fun! PhpCsFixerFix(path)
+fun! PhpCsFixerFix(path, dry_run)
     let command = g:php_cs_fixer_command.' '.a:path
 
-    if(g:php_cs_fixer_dry_run == 1)
+    if a:dry_run == 1
+        echohl Title | echo "[DRY RUN MODE]" | echohl None
         let command = command.' --dry-run'
     endif
 
-    if(strlen(g:php_cs_fixer_fixers_list))
+    if strlen(g:php_cs_fixer_fixers_list)
         let command = command.' --fixers='.g:php_cs_fixer_fixers_list
     endif
 
@@ -36,28 +42,31 @@ fun! PhpCsFixerFix(path)
         let s:nbLines = len(split(s:output, '\n'))
         let s:nbFilesModified = (s:nbLines - 1)
 
-        if(g:php_cs_fixer_verbose == 1)
-            " @todo, if dry-run, purpose to user to launch command without
-            " dry-run
+        if g:php_cs_fixer_verbose == 1
             echohl Title | echo s:output | echohl None
         else
-            if(s:nbFilesModified > 0)
-                " @todo, if dry-run, purpose to user to launch command without
-                " dry-run
+            if s:nbFilesModified > 0
                 echohl Title | echo "There is ".s:nbFilesModified." file(s) modified(s)" | echohl None
             else
                 echohl Title | echo "There is no cs to fix" | echohl None
+            endif
+        endif
+
+        if a:dry_run == 1
+            let l:confirmed = confirm("Do you want to launch command without dry-run option ?", "&Yes\n&No", 2)
+            if l:confirmed == 1
+                call PhpCsFixerFix(a:path, 0)
             endif
         endif
     endif
 endfun
 
 fun! PhpCsFixerFixDirectory()
-    call PhpCsFixerFix(expand('%:p:h'))
+    call PhpCsFixerFix(expand('%:p:h'), g:php_cs_fixer_dry_run)
 endfun
 
 fun! PhpCsFixerFixFile()
-    call PhpCsFixerFix(expand('%:p'))
+    call PhpCsFixerFix(expand('%:p'), g:php_cs_fixer_dry_run)
 endfun
 
 if(g:php_cs_fixer_default_mapping == 1)
