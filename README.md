@@ -15,6 +15,7 @@ let g:php_cs_fixer_php_path = "php"             " Path to PHP
 let g:php_cs_fixer_fixers_list = ""             " List of fixers
 let g:php_cs_fixer_default_mapping = 1          " Enable the mapping by default (<leader>pcd)
 let g:php_cs_fixer_dry_run = 0                  " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0                  " Return the output of command if 1, else an inline information.
 ```
 
 Default mapping is `<leader>pcd`
@@ -22,8 +23,8 @@ Default mapping is `<leader>pcd`
 If you want to change it:
 
 ```viml
-map <leader>pcd :call PhpCsFixerFixDirectory()<CR>
-map <leader>pcf :call PhpCsFixerFixFile()<CR>
+nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
+nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
 ```
 
 # Installation
@@ -37,3 +38,7 @@ Bundle 'stephpy/vim-php-cs-fixer'
 To see how to install `php-cs-fixer`, look at [php-cs-fixer](https://github.com/fabpot/PHP-CS-Fixer) repository.
 
 If you see any improvement or question, contribute or create an issue
+
+# Todo
+
+- If `dry-run` option, ask to user if he wants to launch command without dry-run after he launchs command.

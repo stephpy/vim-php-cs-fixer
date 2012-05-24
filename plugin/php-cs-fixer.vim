@@ -14,6 +14,7 @@ call s:initVariable("g:php_cs_fixer_php_path", "php")
 call s:initVariable("g:php_cs_fixer_fixers_list", "")
 call s:initVariable("g:php_cs_fixer_default_mapping", 1)
 call s:initVariable("g:php_cs_fixer_dry_run", 0)
+call s:initVariable("g:php_cs_fixer_verbose", 0)
 
 let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix --config='.g:php_cs_fixer_config
 
@@ -28,12 +29,26 @@ fun! PhpCsFixerFix(path)
         let command = command.' --fixers='.g:php_cs_fixer_fixers_list
     endif
 
-    let output = system(command)
+    let s:output = system(command)
     if v:shell_error
-        echohl Error | echo output | echohl None
+        echohl Error | echo s:output | echohl None
     else
-        " todo, count how many files have been updated
-        echohl Title | echo output | echohl None
+        let s:nbLines = len(split(s:output, '\n'))
+        let s:nbFilesModified = (s:nbLines - 1)
+
+        if(g:php_cs_fixer_verbose == 1)
+            " @todo, if dry-run, purpose to user to launch command without
+            " dry-run
+            echohl Title | echo s:output | echohl None
+        else
+            if(s:nbFilesModified > 0)
+                " @todo, if dry-run, purpose to user to launch command without
+                " dry-run
+                echohl Title | echo "There is ".s:nbFilesModified." file(s) modified(s)" | echohl None
+            else
+                echohl Title | echo "There is no cs to fix" | echohl None
+            endif
+        endif
     endif
 endfun
 
@@ -46,6 +61,6 @@ fun! PhpCsFixerFixFile()
 endfun
 
 if(g:php_cs_fixer_default_mapping == 1)
-    map <leader>pcd :call PhpCsFixerFixDirectory()<CR>
-    map <leader>pcf :call PhpCsFixerFixFile()<CR>
+    nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
+    nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
 endif
