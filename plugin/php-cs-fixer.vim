@@ -15,7 +15,7 @@ endfunction
 call s:initVariable("g:php_cs_fixer_path", "~/php-cs-fixer.phar")
 call s:initVariable("g:php_cs_fixer_level", "all")
 call s:initVariable("g:php_cs_fixer_php_path", "php")
-call s:initVariable("g:php_cs_fixer_default_mapping", 1)
+call s:initVariable("g:php_cs_fixer_enable_default_mapping", 1)
 call s:initVariable("g:php_cs_fixer_dry_run", 0)
 call s:initVariable("g:php_cs_fixer_verbose", 0)
 
@@ -73,7 +73,7 @@ fun! PhpCsFixerFixFile()
     call PhpCsFixerFix(expand('%:p'), g:php_cs_fixer_dry_run)
 endfun
 
-if(g:php_cs_fixer_default_mapping == 1)
+if(g:php_cs_fixer_enable_default_mapping == 1)
     nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
     nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
 endif
