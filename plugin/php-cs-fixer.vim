@@ -52,7 +52,8 @@ fun! PhpCsFixerFix(path, dry_run)
             endif
         endif
 
-        if a:dry_run == 1
+        " if there is no cs to fix, we have not to ask for remove dry run
+        if a:dry_run == 1 && s:nbFilesModified > 0
             let l:confirmed = confirm("Do you want to launch command without dry-run option ?", "&Yes\n&No", 2)
             if l:confirmed == 1
                 call PhpCsFixerFix(a:path, 0)
