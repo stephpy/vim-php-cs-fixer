@@ -18,11 +18,13 @@ if exists('g:php_cs_fixer_config')
 endif
 "}}}
 
-if !filereadable(g:php_cs_fixer_path)
-  echoerr(g:php_cs_fixer_path.' is not found')
-endif
 
 fun! PhpCsFixerFix(path, dry_run)
+
+    if !filereadable(expand(g:php_cs_fixer_path))
+        echoerr(g:php_cs_fixer_path.' is not found')
+    endif
+
     let command = g:php_cs_fixer_command.' '.a:path
 
     if a:dry_run == 1
