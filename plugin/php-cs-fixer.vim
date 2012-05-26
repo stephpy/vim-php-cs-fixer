@@ -3,27 +3,20 @@ if exists("g:vim_php_cs_fixer") || &cp
 endif
 let g:vim_php_cs_fixer = 1
 
-" Taken from NerdTree
-function! s:initVariable(var, value)
-    if !exists(a:var)
-        exec 'let ' . a:var . ' = ' . "'" . substitute(a:value, "'", "''", "g") . "'"
-        return 1
-    endif
-    return 0
-endfunction
-
-call s:initVariable("g:php_cs_fixer_path", "~/php-cs-fixer.phar")
-call s:initVariable("g:php_cs_fixer_level", "all")
-call s:initVariable("g:php_cs_fixer_php_path", "php")
-call s:initVariable("g:php_cs_fixer_enable_default_mapping", 1)
-call s:initVariable("g:php_cs_fixer_dry_run", 0)
-call s:initVariable("g:php_cs_fixer_verbose", 0)
+" Global options definition."{{{
+let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '~/php-cs-fixer.phar')
+let g:php_cs_fixer_level = get(g:, 'php_cs_fixer_level', 'all')
+let g:php_cs_fixer_php_path = get(g:, 'php_cs_fixer_php_path', 'php')
+let g:php_cs_fixer_enable_default_mapping = get(g:, 'php_cs_fixer_enable_default_mapping', '1')
+let g:php_cs_fixer_dry_run = get(g:, 'php_cs_fixer_dry_run', 0)
+let g:php_cs_fixer_verbose = get(g:, 'php_cs_fixer_verbose', 0)
 
 let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix'
 
 if exists('g:php_cs_fixer_config')
     let g:php_cs_fixer_command = g:php_cs_fixer_command.' --config='.g:php_cs_fixer_config
 endif
+"}}}
 
 
 fun! PhpCsFixerFix(path, dry_run)
@@ -77,3 +70,5 @@ if(g:php_cs_fixer_enable_default_mapping == 1)
     nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
     nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
 endif
+
+" vim: foldmethod=marker
