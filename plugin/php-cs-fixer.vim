@@ -25,6 +25,9 @@ if exists('g:php_cs_fixer_config')
     let g:php_cs_fixer_command = g:php_cs_fixer_command.' --config='.g:php_cs_fixer_config
 endif
 
+if !filereadable(g:php_cs_fixer_path)
+  echoerr(g:php_cs_fixer_path.' is not found')
+endif
 
 fun! PhpCsFixerFix(path, dry_run)
     let command = g:php_cs_fixer_command.' '.a:path
