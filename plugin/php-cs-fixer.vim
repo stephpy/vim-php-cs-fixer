@@ -61,6 +61,7 @@ fun! PhpCsFixerFix(path, dry_run)
             endif
         endif
     endif
+    exec 'edit!'
 endfun
 
 fun! PhpCsFixerFixDirectory()
