@@ -44,20 +44,19 @@ fun! PhpCsFixerFix(path, dry_run)
             exec 'edit!'
         endif
         let s:nbLines = len(split(s:output, '\n'))
-        let s:nbFilesModified = (s:nbLines - 1)
 
         if g:php_cs_fixer_verbose == 1
             echohl Title | echo s:output | echohl None
         else
-            if s:nbFilesModified > 0
-                echohl Title | echo "There is ".s:nbFilesModified." file(s) modified(s)" | echohl None
+            if s:nbLines > 0
+                echohl Title | echo s:nbLines." file(s) modified(s)" | echohl None
             else
                 echohl Title | echo "There is no cs to fix" | echohl None
             endif
         endif
 
         " if there is no cs to fix, we have not to ask for remove dry run
-        if a:dry_run == 1 && s:nbFilesModified > 0
+        if a:dry_run == 1 && s:nbLines > 0
             let l:confirmed = confirm("Do you want to launch command without dry-run option ?", "&Yes\n&No", 2)
             if l:confirmed == 1
                 call PhpCsFixerFix(a:path, 0)
