@@ -1,3 +1,7 @@
+"=============================================================================
+" File: php-cs-fixer.vim
+" Author: Stéphane PY
+
 if exists("g:vim_php_cs_fixer") || &cp
     finish
 endif
