@@ -37,6 +37,13 @@ Via **[Vundle](https://github.com/gmarik/vundle)**, add:
 Bundle 'stephpy/vim-php-cs-fixer'
 ```
 
+Via **[Pathogen](https://github.com/tpope/vim-pathogen)**, do:
+
+```bash
+cd ~/.vim/bundle
+git clone git@github.com:stephpy/vim-php-cs-fixer.git
+```
+
 To see how to install `php-cs-fixer`, look at [php-cs-fixer](https://github.com/fabpot/PHP-CS-Fixer) repository.
 
 If you see any improvement or question, contribute or create an issue
