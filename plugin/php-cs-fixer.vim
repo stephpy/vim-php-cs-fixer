@@ -42,6 +42,10 @@ fun! PhpCsFixerFix(path, dry_run)
         let command = command.' --dry-run'
     endif
 
+    if exists('g:php_cs_fixer_level')
+        let command = command.' --level='.g:php_cs_fixer_level
+    endif
+
     if exists('g:php_cs_fixer_fixers_list')
         let command = command.' --fixers='.g:php_cs_fixer_fixers_list
     endif
