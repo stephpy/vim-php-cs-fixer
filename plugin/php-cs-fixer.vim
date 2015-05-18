@@ -9,7 +9,7 @@ let g:vim_php_cs_fixer = 1
 
 " Global options definition."{{{
 let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '~/php-cs-fixer.phar')
-let g:php_cs_fixer_level = get(g:, 'php_cs_fixer_level', 'all')
+let g:php_cs_fixer_level = get(g:, 'php_cs_fixer_level', 'symfony')
 let g:php_cs_fixer_php_path = get(g:, 'php_cs_fixer_php_path', 'php')
 let g:php_cs_fixer_enable_default_mapping = get(g:, 'php_cs_fixer_enable_default_mapping', '1')
 let g:php_cs_fixer_dry_run = get(g:, 'php_cs_fixer_dry_run', 0)

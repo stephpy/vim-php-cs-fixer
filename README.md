@@ -1,7 +1,7 @@
 Vim-php-cs-fixer
 ================
 
-Integrate [php-cs-fixer](https://github.com/fabpot/PHP-CS-Fixer) created by fabpot.
+Integrate [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer).
 
 This plugin will execute the `php-cs-fixer` command on the directory or file (depends on which command you call). See options to know how to customize that.
 
@@ -10,7 +10,7 @@ This plugin will execute the `php-cs-fixer` command on the directory or file (de
 ```viml
 " If php-cs-fixer is in $PATH, you don't need to define line below
 " let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
-let g:php_cs_fixer_level = "all"                  " which level ?
+let g:php_cs_fixer_level = "symfony"              " which level ?
 let g:php_cs_fixer_config = "default"             " configuration
 let g:php_cs_fixer_php_path = "php"               " Path to PHP
 " If you want to define specific fixers:
@@ -44,7 +44,7 @@ cd ~/.vim/bundle
 git clone git@github.com:stephpy/vim-php-cs-fixer.git
 ```
 
-To see how to install `php-cs-fixer`, look at [php-cs-fixer](https://github.com/fabpot/PHP-CS-Fixer) repository.
+To see how to install `php-cs-fixer`, look at [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) repository.
 
 If you see any improvement or question, contribute or create an issue
 
