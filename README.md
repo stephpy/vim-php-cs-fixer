@@ -1,6 +1,10 @@
 Vim-php-cs-fixer
 ================
 
+[![](https://img.shields.io/travis/stephpy/vim-php-cs-fixer.svg)](https://travis-ci.org/stephpy/vim-php-cs-fixer)
+[![](https://img.shields.io/github/issues/stephpy/vim-php-cs-fixer.svg)](https://github.com/stephpy/vim-php-cs-fixer/issues)
+[![](https://img.shields.io/badge/doc-%3Ah%20vim-php-cs-fixer-blue.svg)](doc/vim-php-cs-fixer.txt)
+
 Integrate [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer).
 
 This plugin will execute the `php-cs-fixer` command on the directory or file (depends on which command you call). See options to know how to customize that.
