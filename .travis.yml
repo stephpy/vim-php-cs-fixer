@@ -1,0 +1,33 @@
+language: php
+
+php:
+  - 5.5
+  - 5.6
+  - 7.0
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+env:
+  - PATH="$HOME/.composer/vendor/bin:$HOME/vim/bin:$PATH"
+
+install:
+  - travis_retry composer self-update && composer --version
+  - travis_retry composer global require "fabpot/php-cs-fixer"
+
+before_script:
+  - git clone https://github.com/vim/vim --depth 1 /tmp/vim && cd /tmp/vim && ./configure --prefix=$HOME/vim --with-features=huge && make && make install && cd -
+  - git clone https://github.com/thinca/vim-themis --branch v1.5 --single-branch --depth 1 /tmp/vim-themis
+
+script:
+  - echo $PATH
+  - vim --cmd version --cmd quit
+  - /tmp/vim-themis/bin/themis tests/ -r --reporter dot
+
+notifications:
+  email: false
+
+# vim:fdl=0:sts=2:sw=2:ts=2
