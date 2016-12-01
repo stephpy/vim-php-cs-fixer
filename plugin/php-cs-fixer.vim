@@ -7,10 +7,17 @@ if exists("g:vim_php_cs_fixer") || &cp
 endif
 let g:vim_php_cs_fixer = 1
 
+" We asume php-cs-fixer in $PATH
+let version = system("php-cs-fixer --version | awk '{split($0,a,\" \"); print a[5]}' | awk '{split($1,b,\".\"); print b[1]}'")
+
 " Global options definition."{{{
 let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '~/php-cs-fixer.phar')
 let g:php_cs_fixer_php_path = get(g:, 'php_cs_fixer_php_path', 'php')
-let g:php_cs_fixer_rules = get(g:, 'php_cs_fixer_rules', '@PSR2')
+if version >= 2
+    let g:php_cs_fixer_rules = get(g:, 'php_cs_fixer_rules', '@PSR2')
+else
+    let g:php_cs_fixer_level = get(g:, 'php_cs_fixer_level', 'symfony')
+endif
 let g:php_cs_fixer_enable_default_mapping = get(g:, 'php_cs_fixer_enable_default_mapping', '1')
 let g:php_cs_fixer_dry_run = get(g:, 'php_cs_fixer_dry_run', 0)
 let g:php_cs_fixer_verbose = get(g:, 'php_cs_fixer_verbose', 0)
@@ -42,9 +49,15 @@ fun! PhpCsFixerFix(path, dry_run)
         let command = command.' --dry-run'
     endif
 
-    if exists('g:php_cs_fixer_rules') && g:php_cs_fixer_rules != 'all'
-        let command = command.' --rules='.g:php_cs_fixer_rules
-    endif
+    if version >= 2
+        if exists('g:php_cs_fixer_rules') && g:php_cs_fixer_rules != '@PSR2'
+            let command = command.' --rules='.g:php_cs_fixer_rules
+        endif
+    else
+		if exists('g:php_cs_fixer_level') && g:php_cs_fixer_level != 'all'
+        	let command = command.' --level='.g:php_cs_fixer_level
+    	endif
+	endif
 
     if exists('g:php_cs_fixer_fixers_list')
         let command = command.' --fixers='.g:php_cs_fixer_fixers_list
