@@ -1,4 +1,4 @@
-Vim-php-cs-fixer
+Vim-php-cs-fixer (for php-cs-fixer 2!)
 ================
 
 [![](https://img.shields.io/travis/stephpy/vim-php-cs-fixer.svg)](https://travis-ci.org/stephpy/vim-php-cs-fixer)
