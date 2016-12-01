@@ -1,0 +1,99 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	Development	//
+<leader>pcd	plugin/php-cs-fixer.vim	/^    nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>$/;"	m
+<leader>pcf	plugin/php-cs-fixer.vim	/^    nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>$/;"	m
+Aaa	tests/fixtures/priority/class_definition,trailing_spaces.php	/^class Aaa implements$/;"	c
+Aaa	tests/results/priority/class_definition,trailing_spaces.php	/^class Aaa implements$/;"	c
+Acme	tests/fixtures/misc/imports.php	/^namespace Acme;$/;"	n
+Acme	tests/fixtures/set/@Symfony.php	/^namespace Acme;$/;"	n
+Acme	tests/results/misc/imports.php	/^namespace Acme;$/;"	n
+Acme	tests/results/set/@Symfony.php	/^namespace Acme;$/;"	n
+FOO	tests/fixtures/priority/align_equals,operators_spaces.php	/^$FOO = 123;$/;"	v
+FOO	tests/results/priority/align_equals,operators_spaces.php	/^$FOO         = 123;$/;"	v
+FOO€BARí	tests/fixtures/priority/align_equals,operators_spaces.php	/^$FOO€BARí= 123;$/;"	v
+FOO€BARí	tests/results/priority/align_equals,operators_spaces.php	/^$FOO€BARí    = 123;$/;"	v
+FOO€BARíBAZ	tests/fixtures/priority/align_equals,operators_spaces.php	/^$FOO€BARíBAZ= 123;$/;"	v
+FOO€BARíBAZ	tests/results/priority/align_equals,operators_spaces.php	/^$FOO€BARíBAZ = 123;$/;"	v
+Foo	tests/fixtures/priority/remove_leading_slash_use,ordered_use.php	/^class Foo implements Baz {}$/;"	c	namespace:Foo\Bar
+Foo	tests/fixtures/set/@PSR2.php	/^class Foo extends Bar implements FooInterface$/;"	c	namespace:Vendor\Package
+Foo	tests/results/priority/remove_leading_slash_use,ordered_use.php	/^class Foo implements Baz {}$/;"	c	namespace:Foo\Bar
+Foo	tests/results/set/@PSR2.php	/^class Foo extends Bar implements FooInterface$/;"	c	namespace:Vendor\Package
+FooBar	tests/fixtures/set/@Symfony.php	/^class FooBar$/;"	c	namespace:Acme
+FooBar	tests/results/set/@Symfony.php	/^class FooBar$/;"	c	namespace:Acme
+Foo\Bar	tests/fixtures/priority/remove_leading_slash_use,ordered_use.php	/^namespace Foo\\Bar;$/;"	n
+Foo\Bar	tests/results/priority/remove_leading_slash_use,ordered_use.php	/^namespace Foo\\Bar;$/;"	n
+Foo\Finder	tests/fixtures/priority/unused_use,line_after_namespace.php	/^namespace Foo\\Finder;$/;"	n
+Foo\Finder	tests/results/priority/unused_use,line_after_namespace.php	/^namespace Foo\\Finder;$/;"	n
+PhpCsFixerBaseTest	tests/misc.vim	/^function! s:PhpCsFixerBaseTest(fileName) abort "{{{$/;"	f
+PhpCsFixerBaseTest	tests/priority.vim	/^function! s:PhpCsFixerBaseTest(fileName) abort "{{{$/;"	f
+PhpCsFixerBaseTest	tests/set.vim	/^function! s:PhpCsFixerBaseTest(fileName) abort "{{{$/;"	f
+PhpCsFixerFix	plugin/php-cs-fixer.vim	/^fun! PhpCsFixerFix(path, dry_run)$/;"	f
+PhpCsFixerFixDirectory	plugin/php-cs-fixer.vim	/^fun! PhpCsFixerFixDirectory()$/;"	f
+PhpCsFixerFixFile	plugin/php-cs-fixer.vim	/^fun! PhpCsFixerFixFile()$/;"	f
+SOME_CONST	tests/fixtures/set/@Symfony.php	/^    const SOME_CONST = 42;$/;"	d	class:Acme::FooBar
+SOME_CONST	tests/results/set/@Symfony.php	/^    const SOME_CONST = 42;$/;"	d	class:Acme::FooBar
+Vendor\Package	tests/fixtures/set/@PSR2.php	/^namespace Vendor\\Package;$/;"	n
+Vendor\Package	tests/results/set/@PSR2.php	/^namespace Vendor\\Package;$/;"	n
+__construct	tests/fixtures/set/@Symfony.php	/^    public function __construct($dummy)$/;"	f	class:Acme::FooBar
+__construct	tests/results/set/@Symfony.php	/^    public function __construct($dummy)$/;"	f	class:Acme::FooBar
+a	tests/fixtures/misc/php_closing_tag,short_tag.php	/^$a = 1;$/;"	v
+a	tests/fixtures/priority/double_arrow_multiline_whitespaces,align_double_arrow.php	/^$a = [$/;"	v
+a	tests/results/misc/php_closing_tag,short_tag.php	/^$a = 1;$/;"	v
+a	tests/results/priority/double_arrow_multiline_whitespaces,align_double_arrow.php	/^$a = [$/;"	v
+array	tests/fixtures/priority/align_double_arrow,operators_spaces.php	/^$array = [$/;"	v
+array	tests/results/priority/align_double_arrow,operators_spaces.php	/^$array = [$/;"	v
+b	tests/fixtures/priority/short_bool_cast,spaces_cast.php	/^$b = !!$a;$/;"	v
+b	tests/results/priority/short_bool_cast,spaces_cast.php	/^$b = (bool) $a;$/;"	v
+bar	tests/fixtures/priority/unused_use,extra_empty_lines.php	/^$bar = null;$/;"	v
+bar	tests/fixtures/set/@PSR2.php	/^    final public static function bar()$/;"	f	class:Vendor\Package::Foo
+bar	tests/results/priority/unused_use,extra_empty_lines.php	/^$bar = null;$/;"	v
+bar	tests/results/set/@PSR2.php	/^    final public static function bar()$/;"	f	class:Vendor\Package::Foo
+foo	tests/fixtures/priority/duplicate_semicolon,extra_empty_lines.php	/^$foo = 2; \/\/$/;"	v
+foo	tests/results/priority/duplicate_semicolon,extra_empty_lines.php	/^<?php $foo = 2 ; \/\/$/;"	v
+fooBar	tests/fixtures/set/@Symfony.php	/^    private $fooBar;$/;"	v	class:Acme::FooBar
+fooBar	tests/results/set/@Symfony.php	/^    private $fooBar;$/;"	v	class:Acme::FooBar
+g:php_cs_fixer_command	plugin/php-cs-fixer.vim	/^    let g:php_cs_fixer_command = g:php_cs_fixer_command . ' --config-file=' . g:php_cs_fixer_config_file$/;"	v
+g:php_cs_fixer_command	plugin/php-cs-fixer.vim	/^  let g:php_cs_fixer_command = 'php-cs-fixer fix'$/;"	v
+g:php_cs_fixer_command	plugin/php-cs-fixer.vim	/^  let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix'$/;"	v
+g:php_cs_fixer_dry_run	plugin/php-cs-fixer.vim	/^let g:php_cs_fixer_dry_run = get(g:, 'php_cs_fixer_dry_run', 0)$/;"	v
+g:php_cs_fixer_enable_default_mapping	plugin/php-cs-fixer.vim	/^let g:php_cs_fixer_enable_default_mapping = get(g:, 'php_cs_fixer_enable_default_mapping', '1')$/;"	v
+g:php_cs_fixer_path	plugin/php-cs-fixer.vim	/^let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '~\/php-cs-fixer.phar')$/;"	v
+g:php_cs_fixer_php_path	plugin/php-cs-fixer.vim	/^let g:php_cs_fixer_php_path = get(g:, 'php_cs_fixer_php_path', 'php')$/;"	v
+g:php_cs_fixer_verbose	plugin/php-cs-fixer.vim	/^let g:php_cs_fixer_verbose = get(g:, 'php_cs_fixer_verbose', 0)$/;"	v
+g:vim_php_cs_fixer	plugin/php-cs-fixer.vim	/^let g:vim_php_cs_fixer = 1$/;"	v
+reverseBoolean	tests/fixtures/set/@Symfony.php	/^    private function reverseBoolean($value = null, $theSwitch = false)$/;"	f	class:Acme::FooBar
+reverseBoolean	tests/results/set/@Symfony.php	/^    private function reverseBoolean($value = null, $theSwitch = false)$/;"	f	class:Acme::FooBar
+s:assert	tests/misc.vim	/^let s:assert = themis#helper('assert')$/;"	v
+s:assert	tests/priority.vim	/^let s:assert = themis#helper('assert')$/;"	v
+s:assert	tests/set.vim	/^let s:assert = themis#helper('assert')$/;"	v
+s:suite	tests/misc.vim	/^let s:suite  = themis#suite('php-cs-fixer')$/;"	v
+s:suite	tests/priority.vim	/^let s:suite  = themis#suite('php-cs-fixer')$/;"	v
+s:suite	tests/set.vim	/^let s:suite  = themis#suite('php-cs-fixer')$/;"	v
+sampleFunction	tests/fixtures/set/@PSR2.php	/^    public function sampleFunction($a, $b = null)$/;"	f	class:Vendor\Package::Foo
+sampleFunction	tests/results/set/@PSR2.php	/^    public function sampleFunction($a, $b = null)$/;"	f	class:Vendor\Package::Foo
+suite.AlignDoubleArrow_OperatorsSpaces	tests/priority.vim	/^function! s:suite.AlignDoubleArrow_OperatorsSpaces() abort "{{{$/;"	f
+suite.AlignEquals_OperatorsSpaces	tests/priority.vim	/^function! s:suite.AlignEquals_OperatorsSpaces() abort "{{{$/;"	f
+suite.ClassDefinition_TrailingSpaces	tests/priority.vim	/^function! s:suite.ClassDefinition_TrailingSpaces() abort "{{{$/;"	f
+suite.DoubleArrowMultilineWhitespaces_AlignDoubleArrow	tests/priority.vim	/^function! s:suite.DoubleArrowMultilineWhitespaces_AlignDoubleArrow() abort "{{{$/;"	f
+suite.DuplicateSemicolon_ExtraEmptyLines	tests/priority.vim	/^function! s:suite.DuplicateSemicolon_ExtraEmptyLines() abort "{{{$/;"	f
+suite.DuplicateSemicolon_SwitchCaseSemicolonToColon	tests/priority.vim	/^function! s:suite.DuplicateSemicolon_SwitchCaseSemicolonToColon() abort "{{{$/;"	f
+suite.EchoToPrint_ShortEchoTag	tests/priority.vim	/^function! s:suite.EchoToPrint_ShortEchoTag() abort "{{{$/;"	f
+suite.Imports	tests/misc.vim	/^function! s:suite.Imports() abort "{{{$/;"	f
+suite.MultipleUse_UnusedUse	tests/priority.vim	/^function! s:suite.MultipleUse_UnusedUse() abort "{{{$/;"	f
+suite.PSR2	tests/set.vim	/^function! s:suite.PSR2() abort "{{{$/;"	f
+suite.PhpClosingTag_ShortTag	tests/misc.vim	/^function! s:suite.PhpClosingTag_ShortTag() abort "{{{$/;"	f
+suite.PhpdocNoEmptyReturn_PhpdocOrder	tests/priority.vim	/^function! s:suite.PhpdocNoEmptyReturn_PhpdocOrder() abort "{{{$/;"	f
+suite.PhpdocNoEmptyReturn_PhpdocSeparation	tests/priority.vim	/^function! s:suite.PhpdocNoEmptyReturn_PhpdocSeparation() abort "{{{$/;"	f
+suite.PhpdocNoPackage_PhpdocSeparation	tests/priority.vim	/^function! s:suite.PhpdocNoPackage_PhpdocSeparation() abort "{{{$/;"	f
+suite.RemoveLeadingSlashUse_OrderedUse	tests/priority.vim	/^function! s:suite.RemoveLeadingSlashUse_OrderedUse() abort "{{{$/;"	f
+suite.ShortBoolCast_SpacesCast	tests/priority.vim	/^function! s:suite.ShortBoolCast_SpacesCast() abort "{{{$/;"	f
+suite.Symfony	tests/set.vim	/^function! s:suite.Symfony() abort "{{{$/;"	f
+suite.TrailingSpaces_UnneededControlParentheses	tests/priority.vim	/^function! s:suite.TrailingSpaces_UnneededControlParentheses() abort "{{{$/;"	f
+suite.UnusedUse_ExtraEmptyLines	tests/priority.vim	/^function! s:suite.UnusedUse_ExtraEmptyLines() abort "{{{$/;"	f
+suite.UnusedUse_LineAfterNamespace	tests/priority.vim	/^function! s:suite.UnusedUse_LineAfterNamespace() abort "{{{$/;"	f
+transformText	tests/fixtures/set/@Symfony.php	/^    private function transformText($dummy, array $options = array())$/;"	f	class:Acme::FooBar
+transformText	tests/results/set/@Symfony.php	/^    private function transformText($dummy, array $options = array())$/;"	f	class:Acme::FooBar
