@@ -16,7 +16,7 @@ This plugin will execute the `php-cs-fixer` (version 2!) command on the director
 " If php-cs-fixer is in $PATH, you don't need to define line below
 " let g:php_cs_fixer_path = "~/php-cs-fixer.phar"   " define the path to the php-cs-fixer.phar
 "let g:php_cs_fixer_config_file = '.php_cs'         " configuration file
-let g:php_cs_fixer_rules = '@PSR2'                  " the rules php-cs-fixer will use
+let g:php_cs_fixer_rules = '@PSR2'                  " which ruleset ?
 let g:php_cs_fixer_php_path = "php"                 " Path to PHP
 " If you want to define specific fixers:
 "let g:php_cs_fixer_fixers_list = "linefeed,short_tag,indentation"
