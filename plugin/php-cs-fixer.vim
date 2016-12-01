@@ -19,6 +19,7 @@ else
   let g:php_cs_fixer_version = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' --version'
 end
 
+" Check the php-cs-fixer version
 let g:version = system(g:php_cs_fixer_version . " | awk '{split($0,a,\" \"); print a[5]}' | awk '{split($1,b,\".\"); print b[1]}'")
 
 if g:version >= 2
@@ -29,6 +30,12 @@ endif
 let g:php_cs_fixer_enable_default_mapping = get(g:, 'php_cs_fixer_enable_default_mapping', '1')
 let g:php_cs_fixer_dry_run = get(g:, 'php_cs_fixer_dry_run', 0)
 let g:php_cs_fixer_verbose = get(g:, 'php_cs_fixer_verbose', 0)
+
+if g:version == 1
+	if exists('g:php_cs_fixer_config')
+    	let g:php_cs_fixer_command = g:php_cs_fixer_command.' --config='.g:php_cs_fixer_config
+	endif
+endif
 
 if exists('g:php_cs_fixer_config_file') && filereadable(g:php_cs_fixer_config_file)
     let g:php_cs_fixer_command = g:php_cs_fixer_command . ' --config-file=' . g:php_cs_fixer_config_file

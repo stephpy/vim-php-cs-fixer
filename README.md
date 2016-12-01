@@ -15,9 +15,12 @@ This plugin will execute the `php-cs-fixer` command on the directory or file (de
 ```viml
 " If php-cs-fixer is in $PATH, you don't need to define line below
 " let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+" If you use php-cs-fixer version 1.x
 let g:php_cs_fixer_level = "symfony"              " which level ?
 let g:php_cs_fixer_config = "default"             " configuration
-"let g:php_cs_fixer_config_file = '.php_cs'       " configuration file
+" If you user php-cs-fixer version 2.x
+let g:php_cs_fixer_rules = "@PSR2"                " wich rules or ruleset ?
+let g:php_cs_fixer_config_file = '.php_cs'        " configuration file
 let g:php_cs_fixer_php_path = "php"               " Path to PHP
 " If you want to define specific fixers:
 "let g:php_cs_fixer_fixers_list = "linefeed,short_tag,indentation"
