@@ -9,20 +9,32 @@ let g:vim_php_cs_fixer = 1
 
 " Global options definition."{{{
 let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '~/php-cs-fixer.phar')
-let g:php_cs_fixer_level = get(g:, 'php_cs_fixer_level', 'symfony')
 let g:php_cs_fixer_php_path = get(g:, 'php_cs_fixer_php_path', 'php')
+
+if executable('php-cs-fixer')
+  let g:php_cs_fixer_command = 'php-cs-fixer fix'
+  let g:php_cs_fixer_version_command = 'php-cs-fixer --version'
+else
+  let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix'
+  let g:php_cs_fixer_version_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' --version'
+end
+
+" Check the php-cs-fixer version
+let g:php_cs_fixer_version = system(g:php_cs_fixer_version_command . " | awk '{split($0,a,\" \"); print a[5]}' | awk '{split($1,b,\".\"); print b[1]}'")
+
+if g:php_cs_fixer_version >= 2
+    let g:php_cs_fixer_rules = get(g:, 'php_cs_fixer_rules', '@PSR2')
+else
+    let g:php_cs_fixer_level = get(g:, 'php_cs_fixer_level', 'symfony')
+endif
 let g:php_cs_fixer_enable_default_mapping = get(g:, 'php_cs_fixer_enable_default_mapping', '1')
 let g:php_cs_fixer_dry_run = get(g:, 'php_cs_fixer_dry_run', 0)
 let g:php_cs_fixer_verbose = get(g:, 'php_cs_fixer_verbose', 0)
 
-if executable('php-cs-fixer')
-  let g:php_cs_fixer_command = 'php-cs-fixer fix'
-else
-  let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix'
-end
-
-if exists('g:php_cs_fixer_config')
-    let g:php_cs_fixer_command = g:php_cs_fixer_command.' --config='.g:php_cs_fixer_config
+if g:php_cs_fixer_version == 1
+	if exists('g:php_cs_fixer_config')
+    	let g:php_cs_fixer_command = g:php_cs_fixer_command.' --config='.g:php_cs_fixer_config
+	endif
 endif
 
 if exists('g:php_cs_fixer_config_file') && filereadable(g:php_cs_fixer_config_file)
@@ -46,13 +58,18 @@ fun! PhpCsFixerFix(path, dry_run)
         let command = command.' --dry-run'
     endif
 
-    if exists('g:php_cs_fixer_level') && g:php_cs_fixer_level != 'all'
-        let command = command.' --level='.g:php_cs_fixer_level
-    endif
-
-    if exists('g:php_cs_fixer_fixers_list')
-        let command = command.' --fixers='.g:php_cs_fixer_fixers_list
-    endif
+    if g:php_cs_fixer_version >= 2
+        if exists('g:php_cs_fixer_rules') && g:php_cs_fixer_rules != '@PSR2'
+            let command = command.' --rules='.g:php_cs_fixer_rules
+        endif
+    else
+		if exists('g:php_cs_fixer_level') && g:php_cs_fixer_level != 'all'
+        	let command = command.' --level='.g:php_cs_fixer_level
+    	endif
+        if exists('g:php_cs_fixer_fixers_list')
+            let command = command.' --fixers='.g:php_cs_fixer_fixers_list
+        endif
+	endif
 
     let s:output = system(command)
 
