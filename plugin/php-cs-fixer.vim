@@ -8,10 +8,12 @@ endif
 let g:vim_php_cs_fixer = 1
 
 " We asume php-cs-fixer in $PATH
-let g:version = system("php-cs-fixer --version | awk '{split($0,a,\" \"); print a[5]}' | awk '{split($1,b,\".\"); print b[1]}'")
+"let g:version = system("php-cs-fixer --version | awk '{split($0,a,\" \"); print a[5]}' | awk '{split($1,b,\".\"); print b[1]}'")
+let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '~/php-cs-fixer.phar')
+let g:version = system(g:php_cs_fixer_path ." --version | awk '{split($0,a,\" \"); print a[5]}' | awk '{split($1,b,\".\"); print b[1]}'")
 
 " Global options definition."{{{
-let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '~/php-cs-fixer.phar')
+"let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '~/php-cs-fixer.phar')
 let g:php_cs_fixer_php_path = get(g:, 'php_cs_fixer_php_path', 'php')
 if g:version >= 2
     let g:php_cs_fixer_rules = get(g:, 'php_cs_fixer_rules', '@PSR2')
