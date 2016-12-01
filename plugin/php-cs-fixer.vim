@@ -7,14 +7,20 @@ if exists("g:vim_php_cs_fixer") || &cp
 endif
 let g:vim_php_cs_fixer = 1
 
-" We asume php-cs-fixer in $PATH
-"let g:version = system("php-cs-fixer --version | awk '{split($0,a,\" \"); print a[5]}' | awk '{split($1,b,\".\"); print b[1]}'")
-let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '~/php-cs-fixer.phar')
-let g:version = system(g:php_cs_fixer_path ." --version | awk '{split($0,a,\" \"); print a[5]}' | awk '{split($1,b,\".\"); print b[1]}'")
-
 " Global options definition."{{{
-"let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '~/php-cs-fixer.phar')
+let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '~/php-cs-fixer.phar')
 let g:php_cs_fixer_php_path = get(g:, 'php_cs_fixer_php_path', 'php')
+
+if executable('php-cs-fixer')
+  let g:php_cs_fixer_command = 'php-cs-fixer fix'
+  let g:php_cs_fixer_version = 'php-cs-fixer --version'
+else
+  let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix'
+  let g:php_cs_fixer_version = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' --version'
+end
+
+let g:version = system(g:php_cs_fixer_version . " | awk '{split($0,a,\" \"); print a[5]}' | awk '{split($1,b,\".\"); print b[1]}'")
+
 if g:version >= 2
     let g:php_cs_fixer_rules = get(g:, 'php_cs_fixer_rules', '@PSR2')
 else
@@ -23,12 +29,6 @@ endif
 let g:php_cs_fixer_enable_default_mapping = get(g:, 'php_cs_fixer_enable_default_mapping', '1')
 let g:php_cs_fixer_dry_run = get(g:, 'php_cs_fixer_dry_run', 0)
 let g:php_cs_fixer_verbose = get(g:, 'php_cs_fixer_verbose', 0)
-
-if executable('php-cs-fixer')
-  let g:php_cs_fixer_command = 'php-cs-fixer fix'
-else
-  let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix'
-end
 
 if exists('g:php_cs_fixer_config_file') && filereadable(g:php_cs_fixer_config_file)
     let g:php_cs_fixer_command = g:php_cs_fixer_command . ' --config-file=' . g:php_cs_fixer_config_file
