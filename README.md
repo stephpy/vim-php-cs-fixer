@@ -18,12 +18,14 @@ This plugin will execute the `php-cs-fixer` command on the directory or file (de
 " If you use php-cs-fixer version 1.x
 let g:php_cs_fixer_level = "symfony"              " which level ?
 let g:php_cs_fixer_config = "default"             " configuration
-" If you use php-cs-fixer version 2.x
-let g:php_cs_fixer_rules = "@PSR2"                " wich rules or ruleset ?
-let g:php_cs_fixer_config_file = '.php_cs'        " configuration file
-let g:php_cs_fixer_php_path = "php"               " Path to PHP
 " If you want to define specific fixers:
 "let g:php_cs_fixer_fixers_list = "linefeed,short_tag,indentation"
+" End of php-cs-fixer version 1 config params
+" If you use php-cs-fixer version 2.x
+let g:php_cs_fixer_rules = "@PSR2"                " wich rules or ruleset ?
+" End of php-cs-fixer version 2 config params
+let g:php_cs_fixer_config_file = '.php_cs'        " configuration file
+let g:php_cs_fixer_php_path = "php"               " Path to PHP
 let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
