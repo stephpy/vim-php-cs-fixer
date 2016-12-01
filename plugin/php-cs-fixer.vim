@@ -13,16 +13,16 @@ let g:php_cs_fixer_php_path = get(g:, 'php_cs_fixer_php_path', 'php')
 
 if executable('php-cs-fixer')
   let g:php_cs_fixer_command = 'php-cs-fixer fix'
-  let g:php_cs_fixer_version = 'php-cs-fixer --version'
+  let g:php_cs_fixer_version_command = 'php-cs-fixer --version'
 else
   let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix'
-  let g:php_cs_fixer_version = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' --version'
+  let g:php_cs_fixer_version_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' --version'
 end
 
 " Check the php-cs-fixer version
-let g:version = system(g:php_cs_fixer_version . " | awk '{split($0,a,\" \"); print a[5]}' | awk '{split($1,b,\".\"); print b[1]}'")
+let g:php_cs_fixer_version = system(g:php_cs_fixer_version_command . " | awk '{split($0,a,\" \"); print a[5]}' | awk '{split($1,b,\".\"); print b[1]}'")
 
-if g:version >= 2
+if g:php_cs_fixer_version >= 2
     let g:php_cs_fixer_rules = get(g:, 'php_cs_fixer_rules', '@PSR2')
 else
     let g:php_cs_fixer_level = get(g:, 'php_cs_fixer_level', 'symfony')
@@ -31,7 +31,7 @@ let g:php_cs_fixer_enable_default_mapping = get(g:, 'php_cs_fixer_enable_default
 let g:php_cs_fixer_dry_run = get(g:, 'php_cs_fixer_dry_run', 0)
 let g:php_cs_fixer_verbose = get(g:, 'php_cs_fixer_verbose', 0)
 
-if g:version == 1
+if g:php_cs_fixer_version == 1
 	if exists('g:php_cs_fixer_config')
     	let g:php_cs_fixer_command = g:php_cs_fixer_command.' --config='.g:php_cs_fixer_config
 	endif
@@ -58,7 +58,7 @@ fun! PhpCsFixerFix(path, dry_run)
         let command = command.' --dry-run'
     endif
 
-    if g:version >= 2
+    if g:php_cs_fixer_version >= 2
         if exists('g:php_cs_fixer_rules') && g:php_cs_fixer_rules != '@PSR2'
             let command = command.' --rules='.g:php_cs_fixer_rules
         endif
