@@ -20,7 +20,7 @@ else
 end
 
 " Check the php-cs-fixer version
-let g:php_cs_fixer_version = system(g:php_cs_fixer_version_command . " | awk '{split($0,a,\" \"); print a[5]}' | awk '{split($1,b,\".\"); print b[1]}'")
+let g:php_cs_fixer_version = system(g:php_cs_fixer_version_command . " | sed -e 's/[^0-9.]*\\([0-9.]*\\).*/\\1/'")
 
 if g:php_cs_fixer_version >= 2
     let g:php_cs_fixer_rules = get(g:, 'php_cs_fixer_rules', '@PSR2')
