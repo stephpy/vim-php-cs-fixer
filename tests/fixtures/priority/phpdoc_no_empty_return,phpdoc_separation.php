@@ -1,5 +1,0 @@
-<?php
-/**
- * Foo.
- * @return void
- */

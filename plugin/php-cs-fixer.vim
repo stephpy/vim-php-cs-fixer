@@ -40,8 +40,11 @@ endif
 if exists('g:php_cs_fixer_config_file') && filereadable(g:php_cs_fixer_config_file)
     let g:php_cs_fixer_command = g:php_cs_fixer_command . ' --config-file=' . g:php_cs_fixer_config_file
 endif
-"}}}
 
+if exists('g:php_cs_fixer_cache')
+    let g:php_cs_fixer_command = g:php_cs_fixer_command . ' --cache-file=' . g:php_cs_fixer_cache
+endif
+"}}}
 
 fun! PhpCsFixerFix(path, dry_run)
 
