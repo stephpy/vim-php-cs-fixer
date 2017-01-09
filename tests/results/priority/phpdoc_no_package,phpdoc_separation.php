@@ -1,4 +1,0 @@
-<?php
-/**
- * Foo with package.
- */

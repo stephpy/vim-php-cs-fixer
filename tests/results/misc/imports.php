@@ -2,8 +2,9 @@
 
 namespace Acme;
 
-use Abc;
-use Barr;
+use \Foo;
 use BBB\Bar;
-use Foo;
-use Zzzz;
+
+use Abc;
+use \Barr;
+use \Zzzz;
