@@ -38,7 +38,11 @@ if g:php_cs_fixer_version == 1
 endif
 
 if exists('g:php_cs_fixer_config_file') && filereadable(g:php_cs_fixer_config_file)
-    let g:php_cs_fixer_command = g:php_cs_fixer_command . ' --config-file=' . g:php_cs_fixer_config_file
+    if g:php_cs_fixer_version == 1
+        let g:php_cs_fixer_command = g:php_cs_fixer_command . ' --config-file=' . g:php_cs_fixer_config_file
+    else
+        let g:php_cs_fixer_command = g:php_cs_fixer_command . ' --config=' . g:php_cs_fixer_config_file
+    endif
 endif
 
 if exists('g:php_cs_fixer_cache')
