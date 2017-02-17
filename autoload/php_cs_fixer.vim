@@ -3,10 +3,10 @@
 " Author: Stéphane PY
 
 " Global options definition."{{{
-let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '~/php-cs-fixer.phar')
+let g:php_cs_fixer_path = get(g:, 'php_cs_fixer_path', '')
 let g:php_cs_fixer_php_path = get(g:, 'php_cs_fixer_php_path', 'php')
 
-if exists('g:php_cs_fixer_path')
+if exists('g:php_cs_fixer_path') && g:php_cs_fixer_path != ""
   let g:php_cs_fixer_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' fix'
   let g:php_cs_fixer_version_command = g:php_cs_fixer_php_path.' '.g:php_cs_fixer_path.' --version'
 else
