@@ -20,7 +20,16 @@ else
 end
 
 " Check the php-cs-fixer version
-let g:php_cs_fixer_version = system(g:php_cs_fixer_version_command . " | sed -e 's/[^0-9.]*\\([0-9.]*\\).*/\\1/'")
+if (has('win32') || has('win64'))
+  if empty(matchstr(&shell, 'powershell'))
+    echoerr('This plugin requires PowerShell in Windows')
+    finish
+  else
+    let g:php_cs_fixer_version = system("(Select-String -InputObject (" . g:php_cs_fixer_version_command . ") -Pattern " . shellescape("\"([0-9])\\.\"") . ").Matches.Groups.Groups[1].value\"")
+  endif
+else
+  let g:php_cs_fixer_version = system(g:php_cs_fixer_version_command . " | sed -e 's/[^0-9.]*\\([0-9.]*\\).*/\\1/'")
+endif
 
 if g:php_cs_fixer_version >= 2
     let g:php_cs_fixer_rules = get(g:, 'php_cs_fixer_rules', '@PSR2')
