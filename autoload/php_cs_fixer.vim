@@ -85,7 +85,9 @@ fun! fix(path, dry_run)
     let s:output = system(command)
 
     if a:dry_run != 1
-      exec 'edit!'
+       let winstate = winsaveview()
+       exec 'edit!'
+       call winrestview(winstate)
     endif
 
     let fix_num = 0
