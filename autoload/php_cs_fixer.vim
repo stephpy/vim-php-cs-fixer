@@ -62,6 +62,11 @@ fun! php_cs_fixer#Fix(path, dry_run)
       endif
     endif
 
+    if &mod
+        echohl Title | echo "There are unsaved changes" | echohl None
+        return
+    endif
+
     let command = g:php_cs_fixer_command.' '.a:path
 
     if a:dry_run == 1
