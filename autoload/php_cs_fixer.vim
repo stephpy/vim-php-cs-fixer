@@ -80,6 +80,9 @@ fun! php_cs_fixer#Fix(path, dry_run)
         if exists('g:php_cs_fixer_rules') && g:php_cs_fixer_rules != '@PSR2'
             let command = command." --rules='".g:php_cs_fixer_rules."'"
         endif
+        if exists('g:php_cs_fixer_using_cache') && g:php_cs_fixer_rules != '@PSR2'
+            let command = command." --using-cache='".g:php_cs_fixer_using_cache."'"
+        endif
     else
 		if exists('g:php_cs_fixer_level') && g:php_cs_fixer_level != 'all'
         	let command = command.' --level='.g:php_cs_fixer_level
