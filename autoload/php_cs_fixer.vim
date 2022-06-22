@@ -55,7 +55,7 @@ if exists('g:php_cs_fixer_cache')
     let g:php_cs_fixer_command = g:php_cs_fixer_command . ' --cache-file=' . g:php_cs_fixer_cache
 endif
 
-if exists('g:php_cs_fixer_allow_risky') && g:php_cs_fixer_version >= 1
+if exists('g:php_cs_fixer_allow_risky') && g:php_cs_fixer_version >= 2
     let g:php_cs_fixer_command = g:php_cs_fixer_command . ' --allow-risky=' . g:php_cs_fixer_allow_risky
 endif
 "}}}
