@@ -28,6 +28,7 @@ let g:php_cs_fixer_config = "default"                  " options: --config
 let g:php_cs_fixer_rules = "@PSR2"          " options: --rules (default:@PSR2)
 "let g:php_cs_fixer_cache = ".php_cs.cache" " options: --cache-file
 "let g:php_cs_fixer_config_file = '.php_cs' " options: --config
+let g:php_cs_fixer_allow_risky = "yes"      " options: --allow-risky
 " End of php-cs-fixer version 2 config params
 
 let g:php_cs_fixer_php_path = "php"               " Path to PHP
