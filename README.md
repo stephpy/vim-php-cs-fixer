@@ -35,6 +35,7 @@ let g:php_cs_fixer_php_path = "php"               " Path to PHP
 let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
+" let g:php_cs_fixer_ignore_env = 1               " Ignoring any environment requirements
 ```
 
 Default mapping is `<leader>pcd`
