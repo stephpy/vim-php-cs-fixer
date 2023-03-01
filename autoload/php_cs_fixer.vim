@@ -58,6 +58,10 @@ endif
 if exists('g:php_cs_fixer_allow_risky') && g:php_cs_fixer_version >= 2
     let g:php_cs_fixer_command = g:php_cs_fixer_command . ' --allow-risky=' . g:php_cs_fixer_allow_risky
 endif
+
+if exists('g:php_cs_fixer_ignore_env') && g:php_cs_fixer_version >= 2
+    let g:php_cs_fixer_command =  'PHP_CS_FIXER_IGNORE_ENV=' . g:php_cs_fixer_ignore_env . ' ' . g:php_cs_fixer_command
+endif
 "}}}
 
 fun! php_cs_fixer#Fix(path, dry_run)
